@@ -1,8 +1,8 @@
 # Inspired from http://coding4streetcred.com/blog/post/Asymmetric-Encryption-Revisited-(in-PyCrypto)
 # PyCrypto docs available at https://www.dlitz.net/software/pycrypto/api/2.6/
 
-from Crypto import Random
 from Crypto.PublicKey import RSA
+from Crypto import random
 import base64
 
 p = 512
@@ -11,7 +11,7 @@ q = 23
 def generate_keys():
         # RSA modulus length must be a multiple of 256 and >= 1024
         modulus_length = p*q # use larger value in production
-        privatekey = RSA.generate(modulus_length, Random.random.randint().read)
+        privatekey = RSA.generate(modulus_length, random.random.randint().read)
         publickey = privatekey.publickey()
         return privatekey, publickey
 
